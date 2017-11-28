@@ -23,8 +23,11 @@ gem 'coffee-rails', '~> 4.2'
 gem 'jbuilder', '~> 2.5'
 
 # ActiveRecord
-gem 'has_scope', '~> 0.7.1'
+gem 'elasticsearch-model', '~> 5.0', '>= 5.0.1'
 gem 'enumerate_it', '~> 1.6', '>= 1.6.1'
+gem 'has_scope', '~> 0.7.1'
+
+gem 'elasticsearch-rails', '~> 5.0', '>= 5.0.1'
 
 # Security
 gem 'devise', '~> 4.3'
