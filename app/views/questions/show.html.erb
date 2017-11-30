@@ -1,0 +1,74 @@
+<div class="row">
+  <div class="col-lg-12">
+    <% if @question.present? %>
+    <h1><%= @question.title %></h1>
+    <% end %>
+  </div>
+</div>
+
+<div class="col-sm-12">
+  <div class="main-box clearfix">
+    <div class="tabs-wrapper profile-tabs">
+      <div class="tab-content">
+        <% if @question.present? %>
+        <div class="tab-pane fade in active" id="tab-newsfeed">
+          <div id="newsfeed">
+            <div class="story">
+              <div class="story-content" style="padding: 0px;">
+                <header class="story-header">
+                  <div class="story-author">
+                    <a href="#" class="story-author-link">
+                      <%= @question.user.name %>
+                    </a>
+                  </div>
+                  <div class="story-time">
+                    <i class="fa fa-clock-o"></i> <%= l @question.created_at %>
+                  </div>
+                </header>
+                <div class="story-inner-content">
+                  <%= @question.body %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+          <% @question.answers.each do |answer| %>
+          <hr/>
+          <div class="tab-pane fade in active" id="tab-newsfeed">
+            <div id="newsfeed">
+              <div class="story">
+                <div class="story-content" style="padding: 0px;">
+                  <header class="story-header">
+                    <div class="story-author">
+                      <a href="#" class="story-author-link">
+                        <%= answer.user.name %>
+                      </a>
+                    </div>
+                    <div class="story-time">
+                      <i class="fa fa-clock-o"></i> <%= l answer.created_at %>
+                    </div>
+                  </header>
+                  <div class="story-inner-content">
+                    <%= answer.body %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+    <hr/>
+    <div class="col-sm-12">
+      <%= simple_form_for(@answer, url: answers_path(question_id: @question.id), method: :post) do |f| %>
+        <div class="form-group">
+          <%= f.input :body, as: :text, class: 'form-control', input_html: { class: 'form-control' } %>
+        </div>
+        <div class="form-group">
+          <%= f.button :submit, 'Enviar', class: 'btn btn-primary' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

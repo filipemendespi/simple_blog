@@ -3,6 +3,8 @@ class Question < ApplicationRecord
 
   has_many :answers
 
+  scope :list, -> { order('created_at DESC') }
+
   validates :body,
             :title,
             presence: true
