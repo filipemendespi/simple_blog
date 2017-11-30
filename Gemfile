@@ -22,6 +22,14 @@ gem 'coffee-rails', '~> 4.2'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 
+gem 'bootstrap-sass', '~> 3.3.7'
+gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.2'
+gem 'jquery-rails', '~> 4.3', '>= 4.3.1'
+# Forms made easy!
+gem 'simple_form', '~> 3.5'
+
+gem 'will_paginate', '~> 3.1', '>= 3.1.6'
+
 # ActiveRecord
 gem 'elasticsearch-model', '~> 5.0', '>= 5.0.1'
 gem 'enumerate_it', '~> 1.6', '>= 1.6.1'
@@ -31,6 +39,7 @@ gem 'elasticsearch-rails', '~> 5.0', '>= 5.0.1'
 
 # Security
 gem 'devise', '~> 4.3'
+gem 'cancancan', '~> 2.1', '>= 2.1.2'
 ## Autentication old API VL
 gem 'simple_token_authentication', '~> 1.15', '>= 1.15.1'
 
