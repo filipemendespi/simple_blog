@@ -1,16 +1,20 @@
-FROM ruby:2.4.2
+FROM ruby:2.4.2-slim-jessie
 
-RUN mkdir -p /usr/src/app
-WORKDIR /usr/src/app
+# Used aptitude
+RUN apt-get update \
+  && apt-get install -y aptitude nodejs openssl libpq-dev build-essential python-software-properties
 
-RUN apt-get update && apt-get install -y nodejs --no-install-recommends && rm -rf /var/lib/apt/lists/*
-RUN apt-get update && apt-get install -y postgresql-client --no-install-recommends && rm -rf /var/lib/apt/lists/*
+# make the "pt_BR.UTF-8" locale so postgres will be utf-8 enabled by default
+RUN aptitude update \
+  && aptitude install -y locales \
+    && rm -rf /var/lib/apt/lists/* \
+    && localedef -i pt_BR -c -f UTF-8 -A /usr/share/locale/locale.alias pt_BR.UTF-8
+ENV LANG pt_BR.utf8
 
-COPY Gemfile /usr/src/app/
 
-RUN bundle install
+COPY Gemfile Gemfile
+RUN bundle install --jobs=80
 
-COPY . /usr/src/app
+COPY . /var/app
 
-EXPOSE 3000
-CMD puma -C config/puma.rb
+WORKDIR /var/app
